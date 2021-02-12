@@ -1,0 +1,83 @@
+.footer__area {
+    @extend %flex;
+    margin: 0 -15px -40px;
+}
+.footer__widget {
+    padding: 0 15px 40px;
+    width: calc(100% / 5);
+    .title {
+        padding-bottom: 20px;
+        margin-bottom: 15px;
+        position: relative;
+        &::before {
+            position: absolute;
+            content: "";
+            width: 40px;
+            height: 2px;
+            background: $theme-bg;
+            bottom: 0;
+            left: 0;
+        }
+    }
+    @include breakpoint(max-lg) {
+        width: calc(100% / 3);
+    }
+    @include breakpoint(max-md) {
+        width: calc(100% / 2);
+    }
+    @media screen and (max-width:450px) {
+        &.social-icons--wrapper {
+            width: 100%;
+        }
+    }
+}
+.link__list {
+    li {
+        padding: 0;
+        font-size: 14px;
+        a {
+            color: $body-color;
+            &:hover {
+                color: $theme-color;
+            }
+        }
+    }
+}
+.social-icons {
+    margin: -3px;
+    @extend %flex;
+    li {
+        padding: 3px;
+        a {
+            width: 35px;
+            height: 35px;
+            line-height: 35px;
+            font-size: 14px;
+            color: $white-color;
+            @include border-radius(50%);
+            text-align: center;
+            border: 1px solid rgba($color:$white-color, $alpha:.1);
+            &.active {
+                border-color: transparent;
+                background: $theme-bg;
+                color: $white-color;
+            }
+        }
+    }
+}
+.footer-bottom {
+    padding: 20px 0;
+    text-align: center;
+    p {
+        a {
+            color: $theme-color;
+        }
+    }
+}
+.fixed--to-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 2;
+}

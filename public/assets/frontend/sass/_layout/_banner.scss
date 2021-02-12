@@ -1,0 +1,102 @@
+/*Banner*/
+.banner-slider {
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid rgba($color:$white-color, $alpha:.1);
+    .owl-dots {
+        position: absolute;
+        left: 0;
+        bottom: 20px;
+        width: 100%;
+    }
+}
+.banner-area {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+.banner-content {
+    max-width: 720px;
+    .title {
+        margin-bottom: 20px;
+    }
+}
+.banner-item {
+    position: relative;
+    padding: 300px 0 150px;
+    &::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba($color:$section-bg, $alpha:.7);
+    }
+    .container {
+        position: relative;
+        z-index: 1;
+    }
+    @include breakpoint(max-lg) {
+        padding: 220px 0 100px;
+    }
+}
+.owl-prev, .owl-next {
+    position: absolute;
+    top: 50%;
+    margin-top: -20px;
+    width: 40px;
+    height: 40px;
+    line-height: 45px;
+    @include border-radius(50%);
+    text-align: center;
+    background: $theme-bg;
+    opacity: 0;
+    @include transition($transition);
+    &:hover {
+        background: rgba($color:$white-color, $alpha:1);
+        &.disabled {
+            opacity: .2;
+        }
+    }
+}
+.owl-prev {
+    left: 0;
+}
+.owl-next {
+    right: 0;
+}
+.owl-carousel:hover {
+    .owl-prev {
+        left: 10px;
+        opacity: 1;
+    }
+    .owl-next {
+        right: 10px;
+        opacity: 1;
+    }
+    .owl-prev, .owl-next {
+        &.disabled {
+            opacity: .2;
+        }
+    }
+}
+.owl-dots {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 30px;
+    .owl-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 4px;
+        background: rgba($color:$white-color, $alpha:.7);
+        @include transition(all ease 1s);
+        margin: 3px;
+        &.active {
+            width: 20px;
+            background: $theme-bg;
+        }
+    }
+}
