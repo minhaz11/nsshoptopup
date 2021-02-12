@@ -22,28 +22,28 @@
                 </tr>
               </thead>
               <tbody class="list">
-                  @forelse ($giftcards as $item)
+                  @forelse ($giftcards as $giftcard)
                   <tr>
                     <th scope="row">
                         <div class="media align-items-center">
                           <a href="#" class="avatar rounded-circle mr-3">
-                            <img alt="banner" src="{{ imageFile('public/assets/admin/img/giftcard/'.$item->image) }}">
+                            <img alt="banner" src="{{ imageFile('public/assets/admin/img/giftcard/'.$giftcard->image) }}">
                           </a>
                           <div class="media-body">
-                            <span class="name mb-0 text-sm">{{ $item->name }}</span>
+                            <span class="name mb-0 text-sm">{{ $giftcard->name }}</span>
                           </div>
                         </div>
                       </th>
                     <td data-label="Details" class="budget">
-                        {{ dt($item->created_at,'d M Y') }}
+                        {{ dt($giftcard->created_at,'d M Y') }}
                     </td>
 
                     <td data-label="action" class="text-right">
-                        <a href="{{ route('admin.item.edit',$item->id) }}" class="btn btn-primary btn-sm edit"><i class="fas fa-edit" data-toggle="tooltip" title="edit"></i> </a>
+                        <a href="javascript:void(0)" class="btn btn-primary btn-sm edit" data-card="{{$giftcard}}" data-route="{{route('admin.giftcard.store',$giftcard->id)}}" data-img="{{imageFile('public/assets/admin/img/giftcard/'.$giftcard->image)}}"><i class="fas fa-edit" data-toggle="tooltip" title="edit"></i></a>
 
-                        <a href="{{ route('admin.item.edit',$item->id) }}" class="btn btn-dark btn-sm edit" data-toggle="tooltip" title="view items"><i class="fas fa-eye"></i> </a>
+                        <a href="{{route('admin.giftcard.items',$giftcard->id) }}" class="btn btn-dark btn-sm" data-toggle="tooltip" title="view giftcard items"><i class="fas fa-eye"></i> </a>
 
-                        <a href="{{ route('admin.item.remove',$item->id) }}" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt" data-toggle="tooltip" title="remove"></i> </a>
+                        <a href="{{ route('admin.giftcard.remove',$giftcard->id) }}" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt" data-toggle="tooltip" title="remove"></i> </a>
                     </td>
                   </tr>
                    @empty
@@ -98,5 +98,78 @@
           </form>
       </div>
   </div>
+
+  {{-- edit modal --}}
+  <div class="modal fade" id="editModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <form action="" method="POST" enctype="multipart/form-data">
+            @csrf
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title">Add Gift Card</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                      </button>
+              </div>
+              <div class="modal-body">
+                 <div class="form-group">
+                   <label for="">Name</label>
+                   <input type="text" name="name"  class="form-control" placeholder="Gift Card name" value="{{ old('name') }}" required>
+                 </div>
+                 <div class="form-group text-center">
+                   <img src="" alt="" id="previewImg" class="w-50 h-50 thumbnail border">
+                 </div>
+                 <div class="form-group">
+                   <label for="">Image</label>
+                   <input type="file" name="image" id="imageFile"  class="form-control" placeholder="Gift Card name">
+                 </div>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+          </div>
+        </form>
+    </div>
+</div>
 @endsection
 
+@push('js')
+
+<script>
+  $('.edit').click(function () {
+    var card = $(this).data('card')
+    var route = $(this).data('route')
+    var img = $(this).data('img')
+    var modal = $('#editModal')
+    modal.find('input[name=name]').val(card.name)
+    modal.find('img').attr('src',img)
+    modal.find('form').attr('action',route)
+    modal.modal('show')
+
+
+  });
+
+  $(document).ready(function(){
+
+    function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function(e) {
+        $('#previewImg').attr('src', e.target.result);
+        }
+
+        reader.readAsDataURL(input.files[0]); // convert to base64 string
+    }
+    }
+
+    $("#imageFile").change(function() {
+    readURL(this);
+    });
+
+});
+
+</script>
+
+@endpush

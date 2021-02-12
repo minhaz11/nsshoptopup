@@ -60,6 +60,13 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function(){
      //gift card
      Route::get('/giftcard', 'GiftCardController@giftcards')->name('giftcard');
      Route::post('store/giftcard/{id?}', 'GiftCardController@store')->name('giftcard.store');
+     Route::get('see/giftcard/item/{id}', 'GiftCardController@cardItems')->name('giftcard.items');
+     Route::get('remove/giftcard/{id}', 'GiftCardController@remove')->name('giftcard.remove');
+
+     //gift card items
+     Route::post('giftcard/item/store/{id?}', 'GiftCardController@cardItemStore')->name('giftcard.item.store');
+     Route::get('remove/giftcard/item/{id}', 'GiftCardController@cardItemRemove')->name('giftcard.item.remove');
+     Route::get('/giftcard/item/codes/{id}', 'GiftCardController@cardItemCodes')->name('cardItem.code');
 
     //Category
     Route::get('/categories', 'CategoryController@categories')->name('categories');
