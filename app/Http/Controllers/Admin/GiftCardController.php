@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\CodeItem;
 use App\GcardItem;
 use App\GiftCard;
 use App\Http\Controllers\Controller;
@@ -31,6 +32,7 @@ class GiftCardController extends Controller
             $msg = 'Giftcard updated successfully';
          }
          $giftcard->name = $request->name;
+         $giftcard->status = $request->status ? 1:0;
          if($request->image){
              $old = $giftcard->image ?? null;
              $giftcard->image = imageUpload($request->image,'public/assets/admin/img/giftcard/','200x200',$old);
@@ -40,6 +42,8 @@ class GiftCardController extends Controller
 
 
     }
+
+
 
     public function cardItems($id)
     {
@@ -81,6 +85,53 @@ class GiftCardController extends Controller
          return back()->with('success',$msg);
 
 
+    }
+
+    public function cardItemRemove($id)
+    {
+        $cardItem = GcardItem::findOrFail($id);
+        CodeItem::where('card_item_id',$id)->delete();
+        $cardItem->delete();
+        return back()->with('success','Item removed');
+
+    }
+
+    public function cardItemCodes($id)
+    {
+        $data['title'] = 'Item codes';
+        $data['codes'] = CodeItem::where('card_item_id',$id)->latest()->paginate();
+        $data['item_id'] = $id;
+        return view('admin.giftcard.codeItems',$data);
+    }
+
+    public function codeStore(Request $request, $id=null)
+    {
+        $request->validate([
+            'code' => 'required',
+            'code.*' => 'required'
+        ]);
+
+        if($id == null){
+            foreach($request->code as $code){
+                $data['code'] = $code;
+                $data['card_item_id'] = $request->item_id;
+                CodeItem::create($data);
+            }
+            $msg = 'Code Added successfully';
+        } else {
+            $code = CodeItem::findOrFail($id);
+            $code->code = $request->code;
+            $code->update();
+            $msg = 'Code Updated successfully';
+        }
+
+        return back()->with('success',$msg);
+    }
+
+    public function codeRemove($id)
+    {
+        $code = CodeItem::findOrFail($id)->delete();
+        return back()->with('success','Code removed');
     }
 
 }

@@ -6,13 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <title>Game</title>
+    <title>Game {{ $title ?? '' }}</title>
 
     <link rel="stylesheet" href="{{ asset('public/assets/frontend') }}/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ asset('public/assets/frontend') }}/css/line-awesome.min.css">
     <link rel="stylesheet" href="{{ asset('public/assets/frontend') }}/css/nice-select.css">
     <link rel="stylesheet" href="{{ asset('public/assets/frontend') }}/css/owl.min.css">
     <link rel="stylesheet" href="{{ asset('public/assets/frontend') }}/css/main.css">
+    @stack('css-lib')
+    @stack('css')
 
     <link rel="shortcut icon" href="{{ asset('public/assets/frontend') }}/images/favicon.png" type="image/x-icon">
 </head>
@@ -31,54 +33,28 @@
                     </div>
                     <ul class="menu">
                         <li>
-                            <a href="#0">Gold</a>
+                            <a href="#0">Product Type</a>
                             <ul class="submenu">
                                 <li>
-                                    <a href="#0">Reload</a>
+                                    <a href="#0">Gift Card</a>
                                 </li>
                                 <li>
-                                    <a href="#0">Faqs</a>
+                                    <a href="#0">Game Credit/Top up</a>
                                 </li>
-                                <li>
-                                    <a href="#0">Promotional News</a>
-                                </li>
-                                <li>
-                                    <a href="#0">About</a>
-                                </li>
+
                             </ul>
                         </li>
-                        <li>
-                            <a href="#0">Silver</a>
-                            <ul class="submenu">
-                                <li>
-                                    <a href="#0">Reload</a>
-                                </li>
-                                <li>
-                                    <a href="#0">Faqs</a>
-                                </li>
-                                <li>
-                                    <a href="#0">Promotional News</a>
-                                </li>
-                                <li>
-                                    <a href="#0">About</a>
-                                </li>
-                            </ul>
-                        </li>
+
                         <li>
                             <a href="#0">Help</a>
                             <ul class="submenu">
                                 <li>
-                                    <a href="#0">Reload</a>
+                                    <a href="#0">Social Link</a>
                                 </li>
                                 <li>
-                                    <a href="#0">Faqs</a>
+                                    <a href="#0">Contact</a>
                                 </li>
-                                <li>
-                                    <a href="#0">Promotional News</a>
-                                </li>
-                                <li>
-                                    <a href="#0">About</a>
-                                </li>
+
                             </ul>
                         </li>
                     </ul>
@@ -246,6 +222,8 @@
     <script src="{{ asset('public/assets/frontend') }}/js/nice-select.js"></script>
     <script src="{{ asset('public/assets/frontend') }}/js/owl.min.js"></script>
     <script src="{{ asset('public/assets/frontend') }}/js/main.js"></script>
+    @stack('js-lib')
+    @stack('js')
 </body>
 
 </html>

@@ -10,6 +10,6 @@ class CodeItem extends Model
 
     public function cardItem()
     {
-        return $this->belongsTo(CodeItem::class,'card_item_id');
+        return $this->belongsTo(GcardItem::class,'card_item_id');
     }
 }

@@ -1,5 +1,11 @@
 @extends('admin.layouts.master')
 
+@push('css-lib')
+<link rel="stylesheet" href="{{ asset('public/assets/admin/css/checkbox.css') }}" type="text/css">
+
+@endpush
+
+
 @section('content')
 
 <div class="container-fluid mt--12 mt-5">
@@ -17,6 +23,7 @@
               <thead class="thead-light">
                 <tr>
                   <th scope="col" class="sort">Image</th>
+                  <th scope="col" class="sort">Status</th>
                   <th scope="col" class="sort">Created at</th>
                   <th scope="col" class="sort text-right">Action</th>
                 </tr>
@@ -34,6 +41,19 @@
                           </div>
                         </div>
                       </th>
+                      <td data-label="Status">
+                        @if($giftcard->status == 1)
+                        <span class="badge badge-dot mr-4">
+                            <i class="bg-success"></i>
+                            <span class="status">active</span>
+                        </span>
+                        @else
+                        <span class="badge badge-dot mr-4">
+                            <i class="bg-warning"></i>
+                            <span class="status">inactive</span>
+                        </span>
+                        @endif
+                    </td>
                     <td data-label="Details" class="budget">
                         {{ dt($giftcard->created_at,'d M Y') }}
                     </td>
@@ -89,6 +109,17 @@
                      <label for="">Image</label>
                      <input type="file" name="image"  class="form-control" placeholder="Gift Card name" required>
                    </div>
+                   <ul class="list-group my-3">
+                    <li class="list-group-item d-flex justify-content-between">
+                     <span class="margin-r">Status:</span>
+                     <label class="el-switch d-flex justfy-content-between">
+                         <input type="checkbox" name="status">
+                         <span class="el-switch-style"></span>
+                     </label>
+
+                 </li>
+
+                </ul>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
@@ -123,6 +154,18 @@
                    <label for="">Image</label>
                    <input type="file" name="image" id="imageFile"  class="form-control" placeholder="Gift Card name">
                  </div>
+
+                 <ul class="list-group my-3">
+                    <li class="list-group-item d-flex justify-content-between">
+                     <span class="margin-r">Status:</span>
+                     <label class="el-switch d-flex justfy-content-between">
+                         <input type="checkbox" name="status">
+                         <span class="el-switch-style"></span>
+                     </label>
+
+                 </li>
+
+                </ul>
               </div>
               <div class="modal-footer">
                   <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
@@ -144,6 +187,9 @@
     var modal = $('#editModal')
     modal.find('input[name=name]').val(card.name)
     modal.find('img').attr('src',img)
+    if(card.status == 1){
+        modal.find('input[name=status]').attr('checked',true)
+    }
     modal.find('form').attr('action',route)
     modal.modal('show')
 

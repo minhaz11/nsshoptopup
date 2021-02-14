@@ -26,6 +26,16 @@
         element.siblings('.faq-item').find('.faq-content').slideUp(300, "swing");
       }
     });
+    $('.games__step__item .step__title').on('click', function (e) {
+      var step = $(this).parent('.games__step__item');
+      if (step.hasClass('open')) {
+        step.removeClass('open');
+        step.find('.step__body').slideUp(300, "swing");
+      } else {
+        step.addClass('open');
+        step.children('.step__body').slideDown(300, "swing");
+      }
+    });
     $("ul>li>.submenu").parent("li").addClass("menu-item-has-children");
     $('.header-bar').on('click', function () {
       $(this).toggleClass('active');

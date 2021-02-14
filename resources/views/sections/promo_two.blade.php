@@ -5,7 +5,7 @@
                 <div class="section-title-icon mr-2">
                     <img src="{{ asset('public/assets/frontend/images/icons/gold.png') }}" alt="icons">
                 </div>
-                <h5 class="title">Dolor Set Amet Consectetur Fernad Mendoz</h5>
+                <h5 class="title">Gift Cards</h5>
             </div>
             <a href="#0" class="view-more cl-1">View All</a>
         </div>

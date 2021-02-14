@@ -49,7 +49,7 @@ class ItemController extends Controller
          $item->status = $request->status ? 1:0;
          if($request->image){
             $old = $item->image??null;
-            $item->image = imageUpload($request->image,'public/assets/admin/img/item/','640x240',$old,'260x146');
+            $item->image = imageUpload($request->image,'public/assets/admin/img/item/','410x550',$old,'320x180');
          }
          $input_form = [];
          if ($request->has('field_name')) {

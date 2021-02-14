@@ -11,11 +11,9 @@
       <div class="col">
         <div class="card">
           <!-- Card header -->
-          <div class="card-header border-0 d-flex bd-highlight">
-            <h3 class="mb-0 p-2 flex-grow-1 bd-highlight">Gift Card Items</h3>
-            <a href="javascript:void(0)"  data-toggle="modal" data-target="#addModal" class="btn btn-primary btn-sm p-2 bd-highlight"> <i class="fas fa-plus"></i> Add new item</a>
-
-            <a href="javascript:void(0)"  data-toggle="modal" data-target="#addModal" class="btn btn-success btn-sm p-2 bd-highlight"> <i class="fas fa-plus"></i> Add Code</a>
+          <div class="card-header d-flex justify-content-between">
+            <h3 class="">Gift Card Items</h3>
+            <a href="javascript:void(0)"  data-toggle="modal" data-target="#addModal" class="btn btn-primary btn-sm "> <i class="fas fa-plus"></i> Add new item</a>
           </div>
           <!-- Light table -->
           <div class="table-responsive">
@@ -232,6 +230,8 @@
         </form>
     </div>
 </div>
+
+
 @endsection
 
 @push('js')
