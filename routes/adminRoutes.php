@@ -21,6 +21,9 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function(){
     });
 
     Route::get('/dashboard', 'AdminController@dashboard')->name('dashboard');
+    Route::get('/setting', 'AdminController@setting')->name('setting');
+    Route::post('/setting', 'AdminController@settingStore');
+
 
     //subscription
     Route::get('/subscriptions', 'SubscriptionController@all')->name('subscription');

@@ -42,7 +42,7 @@ class FrontendController extends Controller
         $banner->heading = $request->heading;
         $banner->short_details = $request->short_details;
         $banner->link = $request->link;
-
+        $banner->status = $request->status? 1 : 0;
         if($request->image){
             $old = $banner->link ?? null;
             $banner->image = imageUpload($request->image,'public/assets/admin/img/banner/','1920x768',$old);

@@ -95,66 +95,6 @@
                 </div>
         </div>
 
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="card border-primary">
-
-                    <h5 class="card-header bg-primary text-white">@lang('Additional (Game ID, User ID etc)')
-                        <button type="button"
-                                class="btn btn-sm btn-outline-white float-right additional">
-                            <i class="la la-fw la-plus"></i>@lang('Add New')
-                        </button>
-                    </h5>
-
-
-                    <div class="card-body">
-                        <div class="row addedField">
-
-                            @if($item->additional != null)
-                                @foreach($item->additional as $key => $data)
-                                    <div class="col-md-12 user-data">
-                                        <div class="form-group">
-                                            <div class="input-group mb-md-0 mb-4">
-                                                <div class="col-md-4">
-                                                    <input name="field_name[]"
-                                                           class="form-control" type="text"
-                                                           value="{{$data->field_level}}" required
-                                                           placeholder="Field Name">
-                                                </div>
-                                                <div class="col-md-3 mt-md-0 mt-2">
-                                                    <select name="type[]" class="form-control">
-                                                        <option value="text"
-                                                                @if($data->type == 'text') selected @endif> @lang('Input Text') </option>
-
-                                                    </select>
-                                                </div>
-                                                <div class="col-md-3 mt-md-0 mt-2">
-                                                    <select name="validation[]"
-                                                            class="form-control">
-                                                        <option value="required"
-                                                                @if($data->validation == 'required') selected @endif> @lang('Required') </option>
-
-                                                    </select>
-                                                </div>
-                                                <div class="col-md-2 mt-md-0 mt-2 text-right">
-                                                    <span class="input-group-btn">
-                                                        <button class="btn btn-danger btn-lg removeBtn w-100"
-                                                                type="button">
-                                                            <i class="fa fa-times"></i>
-                                                        </button>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endforeach
-                            @endif
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
         <div class="row pb-4">
             <div class="col-lg-12 col-md-12">
@@ -192,40 +132,7 @@
 
 
 
-     $('.additional').on('click', function () {
-                var html = `
-                <div class="col-md-12 user-data">
-                    <div class="form-group">
-                        <div class="input-group mb-md-0 mb-4">
-                            <div class="col-md-4">
-                                <input name="field_name[]" class="form-control" type="text" value="" required placeholder="Field Name">
-                            </div>
-                            <div class="col-md-3 mt-md-0 mt-2">
-                                <select name="type[]" class="form-control">
-                                    <option value="text" > Input Text </option>
-
-                                </select>
-                            </div>
-                            <div class="col-md-3 mt-md-0 mt-2">
-                                <select name="validation[]"
-                                        class="form-control">
-                                    <option value="required"> Required </option>
-
-                                </select>
-                            </div>
-                            <div class="col-md-2 mt-md-0 mt-2 text-right">
-                                <span class="input-group-btn">
-                                    <button class="btn btn-danger btn-lg removeBtn w-100" type="button">
-                                        <i class="fa fa-times"></i>
-                                    </button>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>`;
-
-                $('.addedField').append(html);
-            });
+   
 
 
             $(document).on('click', '.removeBtn', function () {

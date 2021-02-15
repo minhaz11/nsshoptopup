@@ -27,8 +27,8 @@
             <div class="header__wrapper">
                 <div class="left__side">
                     <div class="logo">
-                        <a href="#0">
-                            <img src="./assets/images/logo/logo.png" alt="logo">
+                        <a href="{{ url('/') }}">
+                            <img src="{{ imageFile('public/assets/frontend/logo/'.$setting->logo) }}" alt="logo">
                         </a>
                     </div>
                     <ul class="menu">
@@ -65,16 +65,8 @@
                         <span></span>
                         <span></span>
                     </div>
-                    <a href="#0" class="reaload-btn">Reload</a>
-                    <select class="select-bar">
-                        <option value="en">English</option>
-                        <option value="en">Bangla</option>
-                        <option value="en">Hindi</option>
-                        <option value="en">Urdu</option>
-                        <option value="en">Spanish</option>
-                        <option value="en">Suidish</option>
-                        <option value="en">Catalan</option>
-                    </select>
+
+                    @auth
                     <div class="right__menu__btn">
                         <a href="#0" class="profile__thumb right__menu_show">
                             <img src="./assets/images/header/author.png" alt="header">
@@ -106,6 +98,7 @@
                             </li>
                         </ul>
                     </div>
+                    @endauth
                 </div>
             </div>
         </div>

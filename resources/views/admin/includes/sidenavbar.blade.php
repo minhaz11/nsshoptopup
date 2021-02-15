@@ -78,6 +78,13 @@
             </li>
 
             <li class="nav-item">
+              <a class="nav-link {{ activeLink('admin.setting') }}" href="{{ route('admin.setting') }}">
+                <i class="fas fa-cog"></i>
+                <span class="nav-link-text">Setting</span>
+              </a>
+            </li>
+
+            <li class="nav-item">
                 <a class="nav-link collapsed" href="#navbar-examples" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-examples">
                   <i class="ni ni-ungroup text-orange"></i>
                   <span class="nav-link-text">Examples</span>

@@ -1,14 +1,7 @@
 @extends('layouts.frontend')
 
 @section('content')
-        <!--===Page Header===-->
-        <section class="page-header bg_img" data-background="./assets/images/hero/hero-bg.jpg">
-            <div class="container">
-                <div class="page-content">
-                    <h2 class="title">Page header</h2>
-                </div>
-            </div>
-        </section>
+@include('partials.breadcrumb')
         <!--===Page Header===-->
         <section class="game-details-section pt-70 pb-70">
             <div class="container">
@@ -35,31 +28,32 @@
                                     {!! $type->item->details !!}
                                 </p>
                                 <div class="apps__btn__area">
-                                    <a href="{{ $type->item->apple_store }}">
+                                    <a href="{{ $type->item->apple_store }}" target="_blank">
                                         <img src="{{ asset('public/assets/frontend/images/game/app-store-btn.svg') }}" alt="applestore">
                                     </a>
-                                    <a href="{{ $type->item->play_store }}">
+                                    <a href="{{ $type->item->play_store }}" target="_blank">
                                         <img src="{{ asset('public/assets/frontend/images/game/google-play.svg') }}" alt="playstore">
                                     </a>
                                 </div>
                             </div>
                         </div>
-
                         <div class="col-lg-7">
+                            <form action="{{ route('item.order') }}" method="POST">
+                                @csrf
                             @if ($type->additional)
                                 @foreach ($type->additional as $key => $data)
                                     @if ($data->type == 'text')
                                     <div class="games__step__item open active">
                                         <div class="step__title">
-                                            <span class="sl">01</span><h5 class="title">Enter Player ID</h5>
+                                            <span class="sl">01</span><h5 class="title">{{ $data->field_level }}</h5>
                                         </div>
                                         <div class="step__body">
-                                            <form class="step__form mb-4">
+
                                                 <div class="step__form__group">
-                                                    <input type="text" name="username" placeholder="Username">
+                                                    <input type="text" name="p_id" placeholder="{{ $data->field_level }}">
                                                 </div>
-                                            </form>
-                                            <span class="fz-sm">Your player ID is shown on the profile page in the app. Example: <span class="text--theme">“5363266446"</span>.</span>
+
+                                            <span class="fz-sm">Your player ID is shown on the profile page in game the app. Example: <span class="text--theme">“5363266446"</span>.</span>
                                         </div>
                                     </div>
 
@@ -70,7 +64,7 @@
                                             <span class="sl">01</span><h5 class="title">Account</h5>
                                         </div>
                                         <div class="step__body">
-                                            <form class="step__form mb-4">
+
                                                     <div class="step__form__group">
                                                         <label for="">Account Type</label>
                                                         <select name="account_type" id="acc_type" class="form-control">
@@ -96,8 +90,8 @@
                                                             <input type="text" name="g_password" placeholder="password">
                                                         </div>
                                                     </div>
-                                            </form>
-                                           
+
+
                                         </div>
                                     </div>
 
@@ -128,84 +122,21 @@
                                     </div>
                                 </div>
                             </div>
+
                             <div class="games__step__item open active">
                                 <div class="step__title">
-                                    <span class="sl">03</span><h5 class="title">Select Payment Method</h5>
+                                    <span class="sl">03</span><h5 class="title">Buy</h5>
                                 </div>
                                 <div class="step__body">
-                                    <span class="mb-3 d-block fz-sm">
-                                        You Need BDT <span class="text--theme pay">0.00 BDT</span> to purchase the product
-                                    </span>
-                                    <div class="method__body">
-                                        <div class="method__item">
-                                            <a href="javascript:void(0)" class="payment__method">
-                                                <img src="./assets/images/payment/payoneer.png" alt="payment">
-                                            </a>
-                                        </div>
-                                        <div class="method__item">
-                                            <a href="javascript:void(0)" class="payment__method">
-                                                <img src="./assets/images/payment/paypal.png" alt="payment">
-                                            </a>
-                                        </div>
-                                        <div class="method__item">
-                                            <a href="javascript:void(0)" class="payment__method">
-                                                <img src="./assets/images/payment/skrill.png" alt="payment">
-                                            </a>
-                                        </div>
-                                        <div class="method__item">
-                                            <a href="javascript:void(0)" class="payment__method">
-                                                <img src="./assets/images/payment/voogepay.png" alt="payment">
-                                            </a>
-                                        </div>
-                                        <div class="method__item">
-                                            <a href="javascript:void(0)" class="payment__method">
-                                                <img src="./assets/images/payment/payoneer.png" alt="payment">
-                                            </a>
-                                        </div>
-                                        <div class="method__item">
-                                            <a href="javascript:void(0)" class="payment__method">
-                                                <img src="./assets/images/payment/paypal.png" alt="payment">
-                                            </a>
-                                        </div>
-                                        <div class="method__item">
-                                            <a href="javascript:void(0)" class="payment__method">
-                                                <img src="./assets/images/payment/skrill.png" alt="payment">
-                                            </a>
-                                        </div>
-                                        <div class="method__item">
-                                            <a href="javascript:void(0)" class="payment__method">
-                                                <img src="./assets/images/payment/voogepay.png" alt="payment">
-                                            </a>
-                                        </div>
-                                        <div class="method__item">
-                                            <a href="javascript:void(0)" class="payment__method">
-                                                <img src="./assets/images/payment/payoneer.png" alt="payment">
-                                            </a>
-                                        </div>
-                                        <div class="method__item">
-                                            <a href="javascript:void(0)" class="payment__method">
-                                                <img src="./assets/images/payment/paypal.png" alt="payment">
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="games__step__item open active">
-                                <div class="step__title">
-                                    <span class="sl">04</span><h5 class="title">Buy</h5>
-                                </div>
-                                <div class="step__body">
-                                    <form class="step__form">
-                                        <div class="step__form__group">
-                                            <input type="text" name="email" placeholder="Email">
-                                        </div>
-                                        <span class="fz-sm d-block my-3">Your Email Address Here <span class="text--theme">(Optional)</span>.</span>
+
+
                                         <div class="text-right">
-                                            <button type="submit" class="custom-button border-0">Next</button>
+                                            <button type="submit" class="custom-button border-0 btn-block">Next</button>
                                         </div>
-                                    </form>
+
                                 </div>
                             </div>
+                        </form>
                         </div>
                     </div>
                 </div>

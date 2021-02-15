@@ -37,11 +37,17 @@
                   </div>
 
 
-                    <span class="margin-r">Status</span>
-                    <label class="el-switch d-flex justfy-content-between">
-                        <input type="checkbox" name="switch" @if($banner->status ==1) checked @endif>
-                        <span class="el-switch-style"></span>
-                    </label>
+                  <ul class="list-group my-3">
+                    <li class="list-group-item d-flex justify-content-between">
+                     <span class="margin-r">Status:</span>
+                     <label class="el-switch d-flex justfy-content-between">
+                         <input type="checkbox" name="status" @if($banner->status==1) checked @endif>
+                         <span class="el-switch-style"></span>
+                     </label>
+
+                 </li>
+
+                </ul>
 
 
 
