@@ -18,4 +18,7 @@ class SiteController extends Controller
         $data['giftcards']  = GiftCard::whereStatus(1)->latest()->get();
         return view('frontend.landing',$data);
     }
+
+
+    
 }

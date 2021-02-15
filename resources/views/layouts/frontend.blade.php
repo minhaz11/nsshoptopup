@@ -104,6 +104,9 @@
         </div>
     </header>
     <!--=======Header=======-->
+    @if(!request()->routeIs('home'))
+    @include('partials.breadcrumb')
+    @endif
 
     @yield('content')
 
@@ -209,7 +212,9 @@
         </div>
     </footer>
     <!--===Footer Section===-->
-
+    @include('alert.success')
+    @include('alert.error')
+    @include('alert.errors')
     <script src="{{ asset('public/assets/frontend') }}/js/jquery-3.3.1.min.js"></script>
     <script src="{{ asset('public/assets/frontend') }}/js/bootstrap.min.js"></script>
     <script src="{{ asset('public/assets/frontend') }}/js/nice-select.js"></script>

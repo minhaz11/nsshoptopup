@@ -49,6 +49,11 @@ function makeDirectory($path)
 }
 
 
+function gatewayRedirectUrl(){
+    return 'deposit';
+}
+
+
 function removeFile($path)
 {
     return file_exists($path) && is_file($path) ? @unlink($path) : false;

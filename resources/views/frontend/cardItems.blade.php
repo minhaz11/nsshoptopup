@@ -1,7 +1,7 @@
 @extends('layouts.frontend')
 
 @section('content')
-@include('partials.breadcrumb')
+
 
 <section class="promo-section pb-70 section--bg">
     <div class="container">
@@ -17,7 +17,7 @@
             @foreach ($cardItems as $cardItem)
 
             <div class="col-6 col-md-4 col-lg-3">
-                <a href="" class="promo__item__2">
+                <a href="{{ route('cardItem.purchase',[Str::slug($cardItem->title),$cardItem->id]) }}" class="promo__item__2">
                     <img src="{{ imageFile('public/assets/admin/img/giftcard/item/'.$cardItem->image) }}" alt="promo">
                 </a>
                 <small>{{  $cardItem->title }}</small>

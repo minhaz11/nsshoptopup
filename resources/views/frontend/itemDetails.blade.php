@@ -1,7 +1,7 @@
 @extends('layouts.frontend')
 
 @section('content')
-@include('partials.breadcrumb')
+
         <!--===Page Header===-->
         <section class="game-details-section pt-70 pb-70">
             <div class="container">
@@ -128,8 +128,6 @@
                                     <span class="sl">03</span><h5 class="title">Buy</h5>
                                 </div>
                                 <div class="step__body">
-
-
                                         <div class="text-right">
                                             <button type="submit" class="custom-button border-0 btn-block">Next</button>
                                         </div>
