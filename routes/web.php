@@ -18,7 +18,7 @@ Route::get('/', 'SiteController@index')->name('home');
 // Authentication Routes...
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
-Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
 // Registration Routes...
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
@@ -31,7 +31,7 @@ Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm
 Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('reset');
 
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
 
 
 Route::get('/item/{slug}/{id}', 'GameController@itemDetails')->name('item.view');
@@ -70,13 +70,15 @@ Route::namespace('Gateway')->prefix('ipn')->name('ipn.')->group(function () {
 });
 
   // Deposit
-  Route::any('/deposit', 'Gateway\PaymentController@deposit')->name('deposit');
-  Route::post('deposit/insert', 'Gateway\PaymentController@depositInsert')->name('deposit.insert');
-  Route::get('deposit/preview', 'Gateway\PaymentController@depositPreview')->name('deposit.preview');
-  Route::get('deposit/confirm', 'Gateway\PaymentController@depositConfirm')->name('deposit.confirm');
-  Route::get('deposit/manual', 'Gateway\PaymentController@manualDepositConfirm')->name('deposit.manual.confirm');
-  Route::post('deposit/manual', 'Gateway\PaymentController@manualDepositUpdate')->name('deposit.manual.update');
-  Route::get('deposit/history', 'UserController@depositHistory')->name('deposit.history');
+  Route::middleware('auth')->group(function () {
+    Route::any('/deposit', 'Gateway\PaymentController@deposit')->name('deposit');
+    Route::post('deposit/insert', 'Gateway\PaymentController@depositInsert')->name('deposit.insert');
+    Route::get('deposit/preview', 'Gateway\PaymentController@depositPreview')->name('deposit.preview');
+    Route::get('deposit/confirm', 'Gateway\PaymentController@depositConfirm')->name('deposit.confirm');
+    Route::get('deposit/manual', 'Gateway\PaymentController@manualDepositConfirm')->name('deposit.manual.confirm');
+    Route::post('deposit/manual', 'Gateway\PaymentController@manualDepositUpdate')->name('deposit.manual.update');
+    Route::get('deposit/history', 'UserController@depositHistory')->name('deposit.history');
+  });
 
 
 

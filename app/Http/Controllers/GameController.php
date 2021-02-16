@@ -86,7 +86,7 @@ class GameController extends Controller
         $data['attribute'] = 'card_item';
         Order::create($data);
         session()->put('order_id',$order_id);
-        return redirect(route('payment'));
+        return redirect(route('deposit'));
     }
 
 }

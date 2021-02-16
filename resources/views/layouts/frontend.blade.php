@@ -78,8 +78,8 @@
                                         <img src="./assets/images/header/author.png" alt="header">
                                     </div>
                                     <div class="content">
-                                        <h6 class="title">Rock Battu</h6>
-                                        <span>rockbattu@example.com</span>
+                                        <h6 class="title">{{ auth()->user()->name }}</h6>
+                                        <span>{{ auth()->user()->email }}</span>
                                     </div>
                                     <div class="w-100 fz-14 text-center">
                                         <span class="cl-theme d-block pb-2 pt-2">You dont have an wallet with this account?</span>
@@ -94,11 +94,17 @@
                                 <a href="#0">Support Ticket</a>
                             </li>
                             <li>
-                                <a href="#0">Logout</a>
+                                <a href="{{ route('logout') }}">Logout</a>
                             </li>
                         </ul>
                     </div>
                     @endauth
+
+                    @guest
+                    <div class="right__menu__btn">
+                         <a  class="custom-button" href="{{ route('login') }}">Login</a>
+                    </div>
+                    @endguest
                 </div>
             </div>
         </div>
