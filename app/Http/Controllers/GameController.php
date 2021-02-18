@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\CodeItem;
 use App\GcardItem;
+use App\GiftCard;
 use App\Items;
 use App\Package;
 use App\ItemType;
@@ -20,6 +21,20 @@ class GameController extends Controller
         return view('frontend.itemDetails',$data);
     }
 
+    public function topUpitem()
+    {
+        $data['title'] = 'All Top Up Items';
+        $data['items'] = Items::latest()->paginate(10);
+        return view('frontend.allTopUp',$data);
+    }
+
+    public function giftcardItem()
+    {
+        $data['title'] = 'All Giftcards';
+        $data['giftcards'] = GiftCard::latest()->paginate(10);
+        return view('frontend.allGiftCards',$data);
+    }
+
     public function itemOrder(Request $request)
     {
 
@@ -30,7 +45,10 @@ class GameController extends Controller
         //     'fb_password' => 'required_if:account_type,facebook',
         // ]);
 
-        $pkg = Package::findOrFail($request->pkg_id);
+        $pkg = Package::find($request->pkg_id);
+        if(!$pkg){
+            return back()->with('error','Sorry something went wrong!! Please try again');
+        }
         $order_id = Str::random(12);
         $data['order_id'] = $order_id;
         $data['acc_type'] = $request->account_type;
@@ -40,11 +58,13 @@ class GameController extends Controller
         $data['player_id'] = $request->p_id??null;
         $data['amount'] = $pkg->price;
         $data['qty'] = $pkg->qty;
-        $data['attribute'] = $pkg->attribute;
         Order::create($data);
+        $data['attribute'] = $pkg->attribute;
         session()->put('order_id',$order_id);
         return redirect(route('deposit'));
     }
+
+
 
     // public function payment()
     // {

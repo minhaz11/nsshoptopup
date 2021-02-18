@@ -21,8 +21,11 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function(){
     });
 
     Route::get('/dashboard', 'AdminController@dashboard')->name('dashboard');
-    Route::get('/setting', 'AdminController@setting')->name('setting');
-    Route::post('/setting', 'AdminController@settingStore');
+
+     // Logo-Icon
+     Route::get('/setting', 'SettingController@setting')->name('setting');
+     Route::post('setting/update', 'SettingController@settingUpdate')->name('setting.update');
+
 
 
     //subscription
@@ -76,6 +79,45 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function(){
     //Category
     Route::get('/categories', 'CategoryController@categories')->name('categories');
     Route::post('/category/store/{id?}', 'CategoryController@store')->name('category.store');
+
+
+         // Deposit Gateway
+         Route::name('gateway.')->prefix('gateway')->group(function(){
+            // Automatic Gateway
+            Route::get('automatic', 'GatewayController@index')->name('automatic.index');
+            Route::get('automatic/edit/{alias}', 'GatewayController@edit')->name('automatic.edit');
+            Route::post('automatic/update/{code}', 'GatewayController@update')->name('automatic.update');
+            Route::post('automatic/remove/{code}', 'GatewayController@remove')->name('automatic.remove');
+            Route::post('automatic/activate', 'GatewayController@activate')->name('automatic.activate');
+            Route::post('automatic/deactivate', 'GatewayController@deactivate')->name('automatic.deactivate');
+
+            // Manual Methods
+            Route::get('manual', 'ManualGatewayController@index')->name('manual.index');
+            Route::get('manual/manual/new', 'ManualGatewayController@create')->name('manual.create');
+            Route::post('manual/manual/new', 'ManualGatewayController@store')->name('manual.store');
+            Route::get('manual/manual/edit/{alias}', 'ManualGatewayController@edit')->name('manual.edit');
+            Route::post('manual/manual/update/{id}', 'ManualGatewayController@update')->name('manual.update');
+            Route::post('manual/manual/activate', 'ManualGatewayController@activate')->name('manual.activate');
+            Route::post('manual/manual/deactivate', 'ManualGatewayController@deactivate')->name('manual.deactivate');
+        });
+
+
+        // DEPOSIT SYSTEM
+        Route::name('deposit.')->prefix('deposit')->group(function(){
+            Route::get('/', 'DepositController@deposit')->name('list');
+            Route::get('pending', 'DepositController@pending')->name('pending');
+            Route::get('rejected', 'DepositController@rejected')->name('rejected');
+            Route::get('approved', 'DepositController@approved')->name('approved');
+            Route::get('successful', 'DepositController@successful')->name('successful');
+            Route::get('details/{id}', 'DepositController@details')->name('details');
+
+            Route::post('reject', 'DepositController@reject')->name('reject');
+            Route::post('approve', 'DepositController@approve')->name('approve');
+            Route::get('via/{method}/{type?}', 'DepositController@depViaMethod')->name('method');
+            Route::get('/{scope}/search', 'DepositController@search')->name('search');
+            Route::get('date-search/{scope}', 'DepositController@dateSearch')->name('dateSearch');
+
+        });
 
 });
 

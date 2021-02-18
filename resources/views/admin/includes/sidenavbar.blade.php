@@ -4,7 +4,7 @@
       <!-- Brand -->
       <div class="sidenav-header  align-items-center">
         <a class="navbar-brand" href="javascript:void(0)">
-          <img src="assets/img/brand/blue.png" class="navbar-brand-img" alt="...">
+          <img src="{{imageFile(config('setting.logo.path').'/logo.png')}}" class="navbar-brand-img" alt="...">
         </a>
       </div>
       <div class="navbar-inner">
@@ -59,6 +59,34 @@
                   <span class="nav-link-text">Subscriptions</span>
                 </a>
               </li>
+
+
+              <li class="nav-item">
+                <a class="nav-link collapsed" href="#navbar-examples" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-examples">
+                  <i class="ni ni-ungroup text-orange"></i>
+                  <span class="nav-link-text">Payment Gateways</span>
+                </a>
+                <div class="collapse" id="navbar-examples" style="">
+                  <ul class="nav nav-sm flex-column">
+                    <li class="nav-item">
+                      <a href="{{route('admin.gateway.automatic.index')}}" class="nav-link {{activeLink('admin.gateway.automatic.index')}}">
+                        <span class="sidenav-mini-icon"><i class="fas fa-money"></i></span>
+                        <span class="sidenav-normal"> Automatic Gateways </span>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="{{route('admin.gateway.manual.index')}}" class="nav-link {{activeLink('admin.gateway.manual.index')}}">
+                        <span class="sidenav-mini-icon"></span>
+                        <span class="sidenav-normal"> Manual Gateways </span>
+                      </a>
+                    </li>
+
+                  </ul>
+                </div>
+              </li>
+
+
+
 
 
           </ul>

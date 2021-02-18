@@ -2,7 +2,16 @@
   <section class="banner-slider owl-theme owl-carousel">
       @foreach ($banners as $banner)
 
-      <div class="banner-item bg_img" data-background="{{imageFile('public/assets/admin/img/banner/'.$banner->image)}}">
+      @php
+          if($banner->image == ''){
+            $image = asset('public/assets/admin/img/banner/banner2.jpg');
+          } else {
+            $image = asset('public/assets/admin/img/banner/'.$banner->image);
+          }
+      @endphp
+
+
+      <div class="banner-item bg_img" data-background="{{ $image }}">
           <div class="container">
               <div class="banner-area">
                   <div class="banner-content">

@@ -1,12 +1,12 @@
-@extends('layouts.frontend')
+@extends('layouts.auth')
 
 @section('content')
 
-<section class="account-section bg_img" data-background="./assets/images/account/account-bg.jpg">
+<section class="account-section bg_img" data-background="{{imageFile('public/assets/frontend/images/account/account-bg.jpg')}}">
     <div class="container">
         <div class="account-wrapper">
             <h4 class="title text-center">Register</h4>
-            <form class="account-form" method="POST" action="{{ route('register') }}" >
+            <form class="account-form" method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <input type="text" name="name" class=" @error('name') is-invalid @enderror" placeholder="Full Name" required value="{{ old('name') }}">
@@ -40,6 +40,9 @@
 
 
                 </div>
+
+
+
                 <div class="form-group">
                     <input type="password" class=" @error('password') is-invalid @enderror" name="password" placeholder="Passoword" required>
                     @error('password')
@@ -58,8 +61,18 @@
 
 
                 </div>
+                <div class="form-group">
+                    <img class="w-100 h-50 image" id="previewImg" src="https://dummyimage.com/400x400/03174a/fff" alt="">
+                </div>
 
-              
+
+                <div class="form-group">
+                    <input type="file" id="imageFile" class=" @error('image') is-invalid @enderror file form-control" name="image" required value="{{ old('email') }}">
+                    @error('image')
+                    <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                    @enderror
+                </div>
 
                 <div class="form-group text-center">
                     <button type="submit" class="custom-button border-0 ">Register</button>
@@ -79,3 +92,41 @@
     </div>
 </section>
 @endsection
+
+@push('css')
+
+    <style>
+        .file{
+            height: 49px !important;
+        }
+        /* .image{
+            border-radius: 50%
+        } */
+    </style>
+
+@endpush
+
+@push('js')
+    <script>
+            $(document).ready(function(){
+
+            function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                $('#previewImg').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]); // convert to base64 string
+            }
+            }
+
+            $("#imageFile").change(function() {
+            readURL(this);
+            });
+
+    });
+    </script>
+
+@endpush

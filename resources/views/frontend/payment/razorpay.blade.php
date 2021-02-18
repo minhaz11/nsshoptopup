@@ -1,4 +1,4 @@
-@extends($activeTemplate.'layouts.master')
+@extends('layouts.frontend')
 
 @section('content')
     <div class="container">
@@ -7,15 +7,15 @@
                 <div class="row">
                     <div class="col-md-4">
 
-                        <img src="{{$deposit->gateway_currency()->methodImage()}}" class="card-img-top" alt=".." class="w-100">
+                        <img src="" class="card-img-top" alt=".." class="w-100">
                     </div>
                     <div class="col-md-8">
 
                         <form action="{{$data->url}}" method="{{$data->method}}">
 
 
-                            <h3 class="text-center">@lang('Please Pay') {{getAmount($deposit->final_amo)}} {{$deposit->method_currency}}</h3>
-                            <h3 class="my-3 text-center">@lang('To Get') {{getAmount($deposit->amount)}}  {{$general->cur_text}}</h3>
+                            <h3 class="text-center">@lang('Please Pay') {{getNumber($deposit->final_amo)}} {{$deposit->method_currency}}</h3>
+                            <h3 class="my-3 text-center">@lang('To Get') {{getNumber($deposit->amount)}}  BDT</h3>
 
 
                             <script src="{{$data->checkout_js}}"

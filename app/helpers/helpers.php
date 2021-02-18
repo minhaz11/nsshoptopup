@@ -53,6 +53,24 @@ function gatewayRedirectUrl(){
     return 'deposit';
 }
 
+function removeElement($array, $value)
+{
+    return array_diff($array, (is_array($value) ? $value : array($value)));
+}
+
+
+function verificationCode($length)
+{
+    if ($length == 0) return 0;
+    $min = pow(10, $length - 1);
+    $max = 0;
+    while ($length > 0 && $length--) {
+        $max = ($max * 10) + 9;
+    }
+    return random_int($min, $max);
+}
+
+
 
 function removeFile($path)
 {

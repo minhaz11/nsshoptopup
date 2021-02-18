@@ -2,18 +2,7 @@
 
 @section('content')
 
-        <!--===Page Header===-->
-        <section class="game-details-section pt-70 pb-70">
-            <div class="container">
-                <div class="games-details">
-                    <div class="row">
-
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!--===Game Section===-->
+    <!--===Game Section===-->
         <section class="game-details-section pt-70 pb-70">
             <div class="container">
                 <div class="games-details">
@@ -50,7 +39,7 @@
                                         <div class="step__body">
 
                                                 <div class="step__form__group">
-                                                    <input type="text" name="p_id" placeholder="{{ $data->field_level }}">
+                                                    <input type="text" name="p_id" placeholder="{{ $data->field_level }}" required>
                                                 </div>
 
                                             <span class="fz-sm">Your player ID is shown on the profile page in game the app. Example: <span class="text--theme">“5363266446"</span>.</span>
@@ -78,7 +67,7 @@
                                                     </div>
 
                                                         <div class="step__form__group mt-4">
-                                                            <input type="text" name="fb_password" placeholder="Password">
+                                                            <input type="password" name="fb_password" placeholder="Password">
                                                         </div>
                                                     </div>
                                                     <div class="gmail d-none">
@@ -87,7 +76,7 @@
                                                     </div>
 
                                                         <div class="step__form__group mt-4">
-                                                            <input type="text" name="g_password" placeholder="password">
+                                                            <input type="password" name="g_password" placeholder="password">
                                                         </div>
                                                     </div>
 
@@ -111,7 +100,7 @@
 
                                         <div class="recharge__item">
                                             <div class="recharge__inner">
-                                                <input type="radio" name="pkg_id" class="hide__input" value="{{ $pkg->id }}" id="recharge_{{ $key }}">
+                                                <input type="radio" name="pkg_id" class="hide__input" value="{{ $pkg->id }}" id="recharge_{{ $key }}" required>
                                                 <label for="recharge_{{ $key }}" class="package--amount">
                                                     {{ $pkg->qty }} <small>{{ $pkg->attribute }}</small> <small class="text--theme d-none price">{{ getNumber($pkg->price) }} BDT</small>
                                                 </label>

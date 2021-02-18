@@ -8,15 +8,15 @@
                 </div>
                 <h5 class="title">GAMES Credit/Top Up</h5>
             </div>
-            <a href="#0" class="view-more cl-1">View All</a>
+            <a href="{{ route('item.topUp') }}" class="view-more cl-1">View All</a>
         </div>
         <div class="row mb-24-none justify-content-center">
-            @foreach ($itemTypes as $itemType)
+            @foreach ($items as $item)
                 <div class="col-6 col-md-4 col-lg-3">
-                    <a href="{{ route('item.view',[ Str::slug($itemType->item->item_name),$itemType->id]) }}" class="promo__item__2">
-                        <img src="{{ imageFile('public/assets/admin/img/item/'.$itemType->item->image) }}" alt="promo">
+                    <a href="{{ route('item.view',[ Str::slug($item->item_name),$item->id]) }}" class="promo__item__2">
+                        <img src="{{ imageFile('public/assets/admin/img/item/'.$item->image) }}" alt="promo">
                     </a>
-                    <p>{{ $itemType->type_name }}</p>
+                    <p>{{ $item->item_name }}</p>
                 </div>
             @endforeach
 

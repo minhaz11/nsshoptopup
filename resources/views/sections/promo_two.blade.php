@@ -7,7 +7,7 @@
                 </div>
                 <h5 class="title">Gift Cards</h5>
             </div>
-            <a href="#0" class="view-more cl-1">View All</a>
+            <a href="{{route('item.giftcard')}}" class="view-more cl-1">View All</a>
         </div>
         <div class="row mb-24-none justify-content-center">
             @foreach ($giftcards as $item)
@@ -21,5 +21,6 @@
             @endforeach
 
         </div>
+       
     </div>
 </section>

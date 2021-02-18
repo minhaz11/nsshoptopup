@@ -3,9 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Gateway extends Model
 {
+    use SoftDeletes;
     protected $guarded = ['id'];
     protected $table = 'gateways';
     protected $casts = ['status' => 'boolean', 'code' => 'string', 'extra' => 'object','input_form'=> 'object'];

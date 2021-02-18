@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Gateway;
 
+use App\Order;
 use Session;
 use App\User;
 use App\Deposit;
@@ -22,17 +23,21 @@ class PaymentController extends Controller
 
     public function deposit()
     {
-        $gatewayCurrency = GatewayCurrency::whereHas('method', function ($gate) {
+        $data['gatewayCurrency'] = GatewayCurrency::whereHas('method', function ($gate) {
             $gate->where('status', 1);
         })->with('method')->orderby('method_code')->get();
-        $title = 'Deposit Methods';
-        return view('frontend.payment.deposit', compact('gatewayCurrency', 'title'));
+        $data['title'] = 'Deposit Methods';
+
+        if(session('order_id')){
+            $data['orderDetails'] = Order::where('order_id',session('order_id'))->first();
+            $data['title'] = 'Payment Methods';
+        }
+
+        return view('frontend.payment.deposit', $data);
     }
 
     public function depositInsert(Request $request)
     {
-
-
         $request->validate([
             'amount' => 'required|numeric|min:1',
             'method_code' => 'required',
@@ -164,17 +169,17 @@ class PaymentController extends Controller
             $transaction->trx = $data->trx;
             $transaction->save();
 
-            notify($user, 'DEPOSIT_COMPLETE', [
-                'method_name' => $data->gateway_currency()->name,
-                'method_currency' => $data->method_currency,
-                'method_amount' => getAmount($data->final_amo),
-                'amount' => getAmount($data->amount),
-                'charge' => getAmount($data->charge),
-                'currency' => $gnl->cur_text,
-                'rate' => getAmount($data->rate),
-                'trx' => $data->trx,
-                'post_balance' => getAmount($user->balance)
-            ]);
+            // notify($user, 'DEPOSIT_COMPLETE', [
+            //     'method_name' => $data->gateway_currency()->name,
+            //     'method_currency' => $data->method_currency,
+            //     'method_amount' => getAmount($data->final_amo),
+            //     'amount' => getAmount($data->amount),
+            //     'charge' => getAmount($data->charge),
+            //     'currency' => $gnl->cur_text,
+            //     'rate' => getAmount($data->rate),
+            //     'trx' => $data->trx,
+            //     'post_balance' => getAmount($user->balance)
+            // ]);
 
 
         }

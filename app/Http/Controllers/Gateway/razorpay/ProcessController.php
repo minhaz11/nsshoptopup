@@ -59,7 +59,7 @@ class ProcessController extends Controller
         $send['url'] = route('ipn.'.$alias);
         $send['custom'] = $deposit->trx;
         $send['checkout_js'] = "https://checkout.razorpay.com/v1/checkout.js";
-        $send['view'] = 'user.payment.'.$alias;
+        $send['view'] = $alias;
 
         return json_encode($send);
     }

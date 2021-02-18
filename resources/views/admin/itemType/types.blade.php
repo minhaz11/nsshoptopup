@@ -13,18 +13,19 @@
           </div>
           <!-- Light table -->
           <div class="table-responsive">
+
             <table class="table align-items-center table-flush">
-              <thead class="thead-light">
+                <thead class="thead-light">
                 <tr>
-                  <th scope="col" class="sort">Item Type name</th>
-                  <th scope="col" class="sort">Item Name</th>
-                  <th scope="col" class="sort">Status</th>
-                  <th scope="col" class="sort text-right">Action</th>
+                    <th scope="col" class="sort">Item Type name</th>
+                    <th scope="col" class="sort">Item Name</th>
+                    <th scope="col" class="sort">Status</th>
+                    <th scope="col" class="sort text-right">Action</th>
                 </tr>
-              </thead>
-              <tbody class="list">
-                  @forelse ($types as $type)
-                  <tr>
+                </thead>
+                <tbody class="list">
+                    @forelse ($types as $type)
+                    <tr>
 
                     <td data-label="Item Type name" class="budget">
                         {{ $type->type_name }}
@@ -53,17 +54,17 @@
 
                         <a href="{{ route('admin.type.remove',$type->id) }}" class="btn btn-danger btn-sm" rel="noopener noreferrer"><i class="fas fa-trash-alt"></i> </a>
                     </td>
-                  </tr>
-                   @empty
+                    </tr>
+                    @empty
                     <tr>
                         <td colspan="12" class="text-center">
                             No data!
                         </td>
                     </tr>
-                  @endforelse
+                    @endforelse
 
 
-              </tbody>
+                </tbody>
             </table>
           </div>
           <!-- Card footer -->
@@ -74,6 +75,13 @@
       </div>
     </div>
   </div>
+
+
+
+
+
+
+
 
 
 

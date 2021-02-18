@@ -2,16 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
 Route::get('/', 'SiteController@index')->name('home');
 
@@ -25,16 +15,22 @@ Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('re
 Route::post('register', 'Auth\RegisterController@register');
 
 // Password Reset Routes...
-Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('reset.request');
+Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
 Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
-Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('reset.form');
-Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('reset');
+Route::get('password/code-verify', 'Auth\ForgotPasswordController@codeVerify')->name('password.code_verify');
+
+Route::get('password/reset/{token}', 'Auth\PasswordResetController@showResetForm')->name('password.reset');
+Route::post('password/verify-code', 'Auth\ForgotPasswordController@verifyCode')->name('password.verify-code');
+Route::post('password/update', 'Auth\PasswordResetController@reset')->name('password.update');
 
 
-// Route::get('/home', 'HomeController@index')->name('home');
 
 
 Route::get('/item/{slug}/{id}', 'GameController@itemDetails')->name('item.view');
+
+Route::get('all/top-up/item/', 'GameController@topUpitem')->name('item.topUp');
+Route::get('all/giftcard/item/', 'GameController@giftcardItem')->name('item.giftcard');
+
 Route::post('/item/order', 'GameController@itemOrder')->name('item.order');
 Route::get('/payment', 'GameController@payment')->name('payment');
 Route::get('/items/giftcard/{slug}/{id}', 'GameController@giftcardItems')->name('cardItems');

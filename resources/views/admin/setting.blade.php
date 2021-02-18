@@ -8,7 +8,7 @@
 @section('content')
 
 <div class="container-fluid mt--12 mt-5">
-    <form method="post" action="{{ route('admin.setting') }}" enctype="multipart/form-data">
+    <form method="post" action="{{ route('admin.setting.update') }}" enctype="multipart/form-data">
 
         @csrf
         <div class="row justify-content-center">
@@ -26,11 +26,11 @@
 
                   <div class="form-group">
                     <label for=""><strong>Site Name</strong></label>
-                    <input type="text" name="sitename"  class="form-control" placeholder="Site name" required value="{{$setting->sitename }}">
+                    <input type="text" name="sitename"  class="form-control" placeholder="Site name" required value="{{config('setting.sitename.name') }}">
                   </div>
 
                   <div class="image-preview mb-4">
-                    <img src="{{ imageFile('public/assets/frontend/logo/'.$setting->logo) }}" id="previewImg" class="w-100 h-50" alt="">
+                    <img src="{{ imageFile(config('setting.logo.path').'/logo.png') }}" id="previewImg" class="w-100 h-50" alt="">
                   </div>
 
                   <label for="" class="mt-3"><strong>Logo</strong></label>
@@ -41,7 +41,7 @@
 
                  <label for="" class="mt-3"><strong>Fav icon</strong></label>
                  <div class="custom-file ">
-                     <input class="custom-file-input" type="file" accept=".png,.jpg,.JPG,.PNG" name="favico" id="imageFile">
+                     <input class="custom-file-input" type="file" accept=".png,.jpg,.JPG,.PNG" name="favicon" id="imageFile">
                      <label for="my-input" class="custom-file-label">Fav icon</label>
                  </div>
 

@@ -1,8 +1,8 @@
-@extends('layouts.frontend')
+@extends('layouts.auth')
 
 @section('content')
   <!--===Account Section===-->
-  <section class="account-section bg_img" data-background="./assets/images/account/account-bg.jpg">
+  <section class="account-section bg_img" data-background="{{imageFile('public/assets/frontend/images/account/account-bg.jpg')}}">
     <div class="container">
         <div class="account-wrapper">
             <h4 class="title text-center">Login Here</h4>
@@ -19,7 +19,7 @@
                 </div>
             </form>
             <div class="text-center my-2">
-                Forgot Password? <a href="{{ route('reset.request') }}" class="cl-1"> Reset</a>
+                Forgot Password? <a href="{{ route('password.request') }}" class="cl-1"> Reset</a>
             </div>
             <div class="or">
                 <span>OR</span>

@@ -9,13 +9,13 @@
     <div class="container">
         <div class="row">
             @foreach($gatewayCurrency as $data)
-   
+
                 <div class="col-lg-3 col-md-3 mb-4">
                     <div class="card card-deposit">
-                        <h5 class="card-header text-center">{{__($data->name)}}
-                        </h5>
+                        <h6 class="card-header text-center text-secondary">{{__($data->name)}}
+                        </h6>
                         <div class="card-body card-body-deposit">
-                            <img src="" class="card-img-top" alt="{{$data->name}}" class="w-100">
+                            <img src="{{imageFile('public/assets/images/gateway/','200x200')}}}" class="card-img-top" alt="{{$data->name}}" class="w-100">
                         </div>
                         <div class="card-footer">
                             <a href="javascript:void(0)"  data-id="{{$data->id}}" data-resource="{{$data}}"
@@ -23,7 +23,7 @@
                                data-max_amount="{{getNumber($data->max_amount)}}"
                                data-base_symbol="{{$data->baseSymbol()}}"
                                data-fix_charge="{{getNumber($data->fixed_charge)}}"
-                               data-percent_charge="{{getNumber($data->percent_charge)}}" class=" btn  btn-success btn-block custom-success deposit" data-toggle="modal" data-target="#exampleModal">
+                               data-percent_charge="{{getNumber($data->percent_charge)}}" class=" btn btn-block custom-button deposit" data-toggle="modal" data-target="#exampleModal">
                                 @lang('Deposit Now')</a>
                         </div>
                     </div>
@@ -58,7 +58,9 @@
                         <div class="form-group">
                             <label>@lang('Enter Amount'):</label>
                             <div class="input-group">
-                                <input id="amount" type="text" class="form-control form-control-lg" onkeyup="this.value = this.value.replace (/^\.|[^\d\.]/g, '')" name="amount" placeholder="0.00" required=""  value="{{old('amount')}}">
+                                <input id="amount" type="text" class="form-control form-control-lg" onkeyup="this.value = this.value.replace (/^\.|[^\d\.]/g, '')" name="amount" placeholder="0.00" required=""
+                                {{ $orderDetails ? 'readonly':'' }}
+                                 value="{{ $orderDetails ? getNumber($orderDetails->amount,2) :old('amount')}}">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text currency-addon addon-bg">BDT</span>
                                 </div>

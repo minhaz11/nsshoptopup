@@ -13,12 +13,12 @@ class SiteController extends Controller
     public function index()
     {
         $data['title'] = 'Home';
-        $data['itemTypes']  = ItemType::whereStatus(1)->latest()->take(8)->get();
+        $data['items']  = Items::whereStatus(1)->latest()->take(8)->get();
         $data['banners']  = Banner::whereStatus(1)->latest()->get();
         $data['giftcards']  = GiftCard::whereStatus(1)->latest()->get();
         return view('frontend.landing',$data);
     }
 
 
-    
+
 }
